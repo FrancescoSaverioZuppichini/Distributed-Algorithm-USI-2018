@@ -7,8 +7,8 @@ Legend:
 - 😍 = useful
 
 ## TODO
-- [x] images
-- [x] papers
+- [ ] images
+- [ ] papers
 
 System model
 
