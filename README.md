@@ -6,6 +6,10 @@ Legend:
 - 💩 = useless
 - 😍 = useful
 
+## TODO
+- [x] images
+- [x] papers
+
 System model
 
 - set of $\sum = \{ p_1, ..., p_n\}$ processes
@@ -195,7 +199,7 @@ It ensures :
 | Disk writes   | $N + 1$    | $N + 1$      |
 
 
-## From Object Replication to database replication
+## Object Replication and Database replication
 from the book [chp1,3,11]
 
 **consistency model** is a property of a system designs, usually presented as a condition that can be `true` or `false` for a single execution.
@@ -243,7 +247,7 @@ DEF at pag 6 [chp1]
 - execution is *linearizable*
 - easier for the developer
 
-## Generic Functional Model
+###s Generic Functional Model
 [chp11.2.1]
 
 Has five phases
@@ -361,3 +365,13 @@ Uses Generic broadcast to taking care of the conflicts between operation.
 - conclict is defined for *write-write*, *write-read* and *read-write* conflicts
 
 ## Papers
+
+### BFT-Smart
+### ByzCast
+### Ceaser
+### FastCast
+### GeoPaxos
+### Janus
+### Early Scheduling
+
+
