@@ -302,7 +302,7 @@ A *primary* always exist thank to *Fail stop* model (failure are deteched and *p
 
 
 These properties ensure **linearizability**
-## Multi-primary passive replication 😍 
+## Multi-primary passive replication or deferred update😍 
 *Multi is better than one - Umberto Sani*
 
 *active* and *passive* replicaiton are good high availability but not for high performance.
@@ -323,6 +323,7 @@ Transaction states = `EXECUTING`, `COMMITTING`, `COMMITTED`, `ABORTED`
 		- if **update**, the transaction must be **certified** before be commit or abort
 
 
+**Termination** must guarantess *transaction atomicity* (either all the servers commit it or none do it) and *isolation* (one-copy serializability)
 
 ### Atomic commit based termination
 [chp11.3]
@@ -340,14 +341,23 @@ New state = `PRECOMMIT`
 
 ### Atomic broadcast-based termination
 
-Since atomic broadcast guarantees *Agreement* and *Total order* all servers reach the same outcome, `COMMIT` or `ABORT`.
+Since atomic broadcast guarantees *Agreement* and *Total order* all servers reach the same outcome, `COMMIT` or `ABORT`. All replicas deliver in the same order, thus the certification test is deterministic
 
 - transaction `t` is commited if no transaction `t'` that precedes `t` does update any data item read by `t`
 
 No need to check **write-write** conflicts
 
 ### Reordering-based termination
+ By reordering the transaction we can lower the abort ratio.
+
+ - uses a `ReorderList` contrains committed transactions not seen by transactions in execution since their order can change
+ - when we reach the `Reorder Factor` (max len of the array) one transaction is removed and its updated are applied to the db
 
 ### Generic broadcast based termination
+
+Uses Generic broadcast to taking care of the conflicts between operation. 
+
+- increase performance since ordering happens only when it is needed!
+- conclict is defined for *write-write*, *write-read* and *read-write* conflicts
 
 ## Papers
