@@ -83,10 +83,10 @@ To speed up
 
 ### FIFO broadcast
 Deliver is done in the same order of the send
- - *FIFO order* : if a **correct** `p` broadcast `m` before `m'` then no **correct** `p` delivers `m` before `m'`
+ - *FIFO order* : if a **correct** `p` broadcast `m` before `m'` then no **correct** `p` delivers `m'` before `m`
 
 ### Uniform FIFO broadcast
- - *Uniform FIFO order* : if a `p` broadcast `m` before `m'` then no  `p` delivers `m` before `m'`
+ - *Uniform FIFO order* : if a `p` broadcast `m` before `m'` then no  `p` delivers `m'` before `m`
 
 ### Casual broadcast
 Same order of causally related deliver at all receivers
