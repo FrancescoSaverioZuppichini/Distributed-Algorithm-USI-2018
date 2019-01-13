@@ -302,7 +302,9 @@ A *primary* always exist thank to *Fail stop* model (failure are deteched and *p
 
 
 These properties ensure **linearizability**
-## Multi-primary passive replication
+## Multi-primary passive replication 😍 
+*Multi is better than one - Umberto Sani*
+
 *active* and *passive* replicaiton are good high availability but not for high performance.
 
 - fault-tolerace 
@@ -313,6 +315,8 @@ Similar to *passive* replication
 
 - each operation executed by one machine (or a set of *primary* machines)
 
+Transaction states = `EXECUTING`, `COMMITTING`, `COMMITTED`, `ABORTED`
+
 4. - When receive the update, each replica checks **deterministically** if the update can be accepted $\rightarrow$ avoid **mutually inconsistency**
 	- upon transaction termination
 		- if is **read-only**, commit with no interaction between replica
@@ -322,7 +326,25 @@ Similar to *passive* replication
 
 ### Atomic commit based termination
 [chp11.3]
+
+New state = `PRECOMMIT`
+
+- transaction `t` is commited if all servers precommit
+- a server precommits `t` if each transaction it knows in `COMMITTED` or `PRECOMMITED` either
+	- precedes `t`
+	- or does not conflict with `t`. No `read`/`write` intersection
+
+#### Problems
+- if one server down $\rightarrow$ protocol is blocked (all servers need to precommit)
+- high abort ratio
+
 ### Atomic broadcast-based termination
+
+Since atomic broadcast guarantees *Agreement* and *Total order* all servers reach the same outcome, `COMMIT` or `ABORT`.
+
+- transaction `t` is commited if no transaction `t'` that precedes `t` does update any data item read by `t`
+
+No need to check **write-write** conflicts
 
 ### Reordering-based termination
 
