@@ -434,6 +434,7 @@ Multi-core servers are not well exploited in fault-tolerant state machine-replic
 #### Solution 
 - proposes **early scheduling** of operations. Decision are mode before the requests are ordered to schedule operations on worker threads at replicas
 - outperform late scheduling
+
 ### Spanner
 #### Problem
 Build a **scalable**, **globally-distributed** DB
