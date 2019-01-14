@@ -8,7 +8,7 @@ Legend:
 
 ## TODO
 - [ ] images
-- [ ] papers
+- [x] papers
 
 System model
 
@@ -247,7 +247,7 @@ DEF at pag 6 [chp1]
 - execution is *linearizable*
 - easier for the developer
 
-###s Generic Functional Model
+### Generic Functional Model
 [chp11.2.1]
 
 Has five phases
@@ -258,7 +258,7 @@ Has five phases
 4. Agreement coordination: Servers may need to undergo a coordination phase to ensure that each executed operations has the same effect on all the servers 
 5. Client Reponse
 
-## Enviroment
+### Enviroment
 - `ps` follows specs until it crashes
 - a crashed `p` is eventually detected by **every** correct `ps`
 - no process is suspected of being crashed if it is not really crashed
@@ -436,8 +436,21 @@ Multi-core servers are not well exploited in fault-tolerant state machine-replic
 - outperform late scheduling
 ### Spanner
 #### Problem
+Build a **scalable**, **globally-distributed** DB
 #### Solution
+- first system to distribute data at globally scale and support externally-consistent distributed transactions
+- data is stored in a schematized **semi-relational** tables
+- replica configuration can be controlled at fine grain
+- provide **external consistency** reads-write
+- **globally consistent** reads
+- assign globally-meaningful **commit timestamps** for transactions
 
 ### WREN
 #### Problem
+
+Transactional Causal Consistency (TCC) is not implemented well
 #### Solution
+- present the first TCC that implements **non blocking** reads, archieving **low latency** and allows application to scale out by sharding.
+## Resources
+
+- [consistency](https://mwhittaker.github.io/consistency_in_distributed_systems/1_baseball.html)
