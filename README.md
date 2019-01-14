@@ -406,16 +406,34 @@ In Atomic-Multicast **distributed message ordering is challenging** since each m
 
 ### GeoPaxos
 #### Problem
-#### Solution
+Coordinating geographically distributed replicas
 
+#### Solution
+- decouples order from execution in a state machine replication
+- *partial order* on the execution of operations (instead of *total order*) $\rightarrow$ save time
+- exploit geographic location
+  
 ### Janus
 #### Problem
-#### Solution
 
+Coordination between cross-data center is done **twice**, for *concurrency model* and *consensus* 
+
+(In a concurrent system different threads communicate with each other)
+
+#### Solution
+- *concurrency* control and *consensus* can be mapped to the same abstraction
+- **unified** protocol do to booth at once: 
+  - **strict serializability** for transaction consistency 
+  - **linearizability** for replication consistency
+
+(*Strict serializability* guarantees that operations take place atomically
 ### Early Scheduling
 #### Problem
-#### Solution
 
+Multi-core servers are not well exploited in fault-tolerant state machine-replication due to the deterministic execution of request that translates into a single-threaded replice leading to bad performance
+#### Solution 
+- proposes **early scheduling** of operations. Decision are mode before the requests are ordered to schedule operations on worker threads at replicas
+- outperform late scheduling
 ### Spanner
 #### Problem
 #### Solution
