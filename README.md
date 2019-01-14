@@ -367,11 +367,59 @@ Uses Generic broadcast to taking care of the conflicts between operation.
 ## Papers
 
 ### BFT-Smart
+#### Problem: 
+Gap between existing software and research
+#### Solution: 
+- Open source Java library implementing robuts **state-machine** replication
+- support reconfigurations of the replica set
+- provide **efficient** and **transparent** support for durable services
+
 ### ByzCast
+#### Problem: 
+No Byzantine Fault-tolerant Atomic Multicast exists
+#### Solution: 
+- first BFT Atomic Multicast
+- designed on top of existing BFT abstraction (BFT-Smart)
+- scale with the number of group
+- **partially genuine**
+- uses two groups, all implements FIFO atomic broadcast
+    - `auxilary`, help order the msg
+	- `target`, the ones that can be in `m.dst`
+- uses a **tree** of processes to re-route/order **efficiently** the msg to their destination (lowest common anchestor)
 ### Ceaser
+#### Problem
+Big performance degradation when there are **conflicting** request for **geographically replicated sites**
+#### Solution
+
+- solve generic consensun to increase performance
+- implements **Multi-Leader Generic Consensus**
+- uses a *unique time-stamp* associated with every command `c` to decide if a **slow decision** is needed
+
 ### FastCast
+#### Problem
+In Atomic-Multicast **distributed message ordering is challenging** since each message can be multicast to all destinations
+#### Solution
+- Genuine Atomic Multicast that uses only **four communication delays** ($4 \delta$)
+- decompose the ordering in **two** execution paths, `FAST` and `SLOW`
+  - `FAST` speculates about the order $\rightarrow$ if okay save time
+  - `SLOW` path similar to BaseCast
+
 ### GeoPaxos
+#### Problem
+#### Solution
+
 ### Janus
+#### Problem
+#### Solution
+
 ### Early Scheduling
+#### Problem
+#### Solution
 
+### Spanner
+#### Problem
+#### Solution
 
+### WREN
+#### Problem
+#### Solution
