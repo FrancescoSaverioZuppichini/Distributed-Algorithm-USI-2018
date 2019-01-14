@@ -386,6 +386,7 @@ No Byzantine Fault-tolerant Atomic Multicast exists
     - `auxilary`, help order the msg
 	- `target`, the ones that can be in `m.dst`
 - uses a **tree** of processes to re-route/order **efficiently** the msg to their destination (lowest common anchestor)
+
 ### Ceaser
 #### Problem
 Big performance degradation when there are **conflicting** request for **geographically replicated sites**
